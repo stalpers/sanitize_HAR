@@ -61,7 +61,6 @@ class HAR():
     def debug(self):
         pprint.pprint(self.json)
 
-
 if __name__ == '__main__':
     args = parser.parse_args()
     file = args.input
