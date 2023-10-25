@@ -21,9 +21,11 @@ def _randomize(s):
         for r in re.findall(r'(.+?)=(.+?)(;\s)', s):
             st = r[1]
             st = f'{st[0]}{"".join(random.choice(chars) for x in range(len(st) - 2))}{st[-1]}'
-            return f'{ret_str}{r[0]}={st}{r[2]}'
+            ret_str = f'{ret_str}{r[0]}={st}{r[2]}'
+        return ret_str
     else:
         return f'{s[0]}{"".join(random.choice(chars) for x in range(len(s) - 2))}{s[-1]}'
+
 
 class HAR():
     def __init__(self, file):
