@@ -17,7 +17,7 @@ class ParseException(Exception):
 def _randomize(s):
     chars = string.ascii_letters
     if "=" in s:
-        ret_str=''
+        ret_str = ''
         for r in re.findall(r'(.+?)=(.+?)(;\s)', s):
             st = r[1]
             st = f'{st[0]}{"".join(random.choice(chars) for x in range(len(st) - 2))}{st[-1]}'
@@ -27,9 +27,9 @@ def _randomize(s):
         return f'{s[0]}{"".join(random.choice(chars) for x in range(len(s) - 2))}{s[-1]}'
 
 
-class HAR():
-    def __init__(self, file):
-        self.file = file
+class HAR:
+    def __init__(self, filename):
+        self.file = filename
         self.json = json.JSONDecoder()
         pass
 
@@ -64,14 +64,14 @@ class HAR():
                 except:
                     pass
 
-    def save(self, file):
+    def save(self, filename):
         try:
-            with open(file, 'w') as json_out:
-                json.dump(self.json, json_out)
+            with open(filename, 'w') as json_out:
+                json.dump(self.json, json_out, indent=2)
             json_out.close()
-        except Exception as e:
-            print(f'Failed to save HAR file {file}: {e}')
-        print(f'Sanitized HAR saved successfully to {file}')
+        except Exception as e2:
+            print(f'Failed to save HAR file {filename}: {e2}')
+        print(f'Sanitized HAR saved successfully to {filename}')
 
     def debug(self):
         pprint.pprint(self.json)
